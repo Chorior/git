@@ -1,2 +1,2 @@
 # git
-notes of git
+summary of git pro
