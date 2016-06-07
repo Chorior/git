@@ -19,4 +19,12 @@
 2. 在服务器架设Git:
     * 把现存仓库导出新的纯仓库（不包含当前工作目录的仓库）：`git clone --bare my_project my_project.git`；
     * 将纯目录转移到服务器：`scp -r my_project.git user@git.example.com:/opt/git`；
-3.             
+3. 使用git push前：
+    * 需要设置`push.default`；
+    * 设置`push.default`为`matching`: 
+        * `git config --global push.default matching`;
+        * git 将推送和远程同名的所有本地分支；
+    * 设置`push.default`为'simple'（老版本Git为'current'）：
+        * `git config --global push.default simple`；
+        * 只推送当前分支到远程关联的同名分支；
+4. 使用git push推送当前分支；        
