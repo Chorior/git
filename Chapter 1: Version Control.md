@@ -32,7 +32,7 @@
     * 对这些修改了的文件作快照,并保存到暂存区域；
     * 提交更新,将保存在暂存区域的文件快照转储到 git 目录中；
 7. 安装Git:
-    * ubuntu：`sudo apt-get instal git-core`
+    * ubuntu：`sudo apt-get install git-core`
     * Fedora：`sudo yum install git-core`
     * Mac：`sudo port install git-core +svn +doc +bash_completion +gitweb`
     * Windows：<http://code.google.com/p/msysgit>
