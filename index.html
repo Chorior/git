@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Start Git by Chorior</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Start Git</h1>
+        <p>notes of git</p>
+
+        <p class="view"><a href="https://github.com/Chorior/git">View the Project on GitHub <small>Chorior/git</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Chorior/git/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Chorior/git/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Chorior/git">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="git学习总结" class="anchor" href="#git%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>git学习总结</h1>
+
+<hr>
+
+<blockquote>
+<p>作者：彭侦<br>
+链接：<a href="https://github.com/Chorior/git/blob/master/Personal%20Summary%20of%20git.md">https://github.com/Chorior/git/blob/master/Personal%20Summary%20of%20git.md</a> </p>
+</blockquote>
+
+<p>Distributed Version Control System,简称DVCS,中文翻译为分布式版本管理系统,在管理代码方面简直就是神一般的存在,下面是我个人在两周之内学习git pro的总结,其中有一些参考了其它文章。</p>
+
+<h2>
+<a id="本文结构" class="anchor" href="#%E6%9C%AC%E6%96%87%E7%BB%93%E6%9E%84" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>本文结构</h2>
+
+<ul>
+<li><a href="#git%E5%AE%89%E8%A3%85">git安装</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E5%BA%93">创建一个远程代码库</a></li>
+<li><a href="#git%E9%85%8D%E7%BD%AE">git配置</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93">创建本地仓库</a></li>
+<li><a href="#%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6">加载文件</a></li>
+<li><a href="#%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6">移动文件</a></li>
+<li><a href="#%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6">提交文件</a></li>
+<li><a href="#%E5%BB%BA%E7%AB%8B%E5%88%86%E6%94%AF">建立分支</a></li>
+<li><a href="#%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF">合并分支</a></li>
+<li><a href="#%E8%A1%8D%E5%90%88%E5%88%86%E6%94%AF">衍合分支</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF">删除分支</a></li>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">添加远程仓库</a></li>
+<li><a href="#%E6%8E%A8%E9%80%81%E6%95%B0%E6%8D%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">推送数据到远程仓库</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">删除远程仓库</a></li>
+</ul>
+
+<h2 id="git安装">
+<a id="git安装" class="anchor" href="#git%E5%AE%89%E8%A3%85" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>git安装</h2>
+
+<ol>
+<li>linux
+
+<ul>
+<li>Fedora: <code>sudo yum install git-core</code>
+</li>
+<li>Debian: <code>sudo apt-get install git-core</code>
+</li>
+</ul>
+</li>
+<li>Windows
+
+<ul>
+<li>从<a href="http://code.google.com/p/msysgit">http://code.google.com/p/msysgit</a>下载安装文件.exe,点击安装即可</li>
+<li>若需要翻墙,这里提供lantern的下载地址:<a href="https://github.com/getlantern/lantern">https://github.com/getlantern/lantern</a>
+</li>
+</ul>
+</li>
+</ol>
+
+<h2 id="创建一个远程代码库">
+<a id="创建一个远程代码库" class="anchor" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E5%BA%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>创建一个远程代码库</h2>
+
+<ol>
+<li>上<a href="http://github.com">http://github.com</a>注册一个账号,并新建一个代码库；</li>
+<li>这里有一篇文科妹子写的github教程: <a href="https://gold.xitu.io/entry/56e638591ea49300550885cc">https://gold.xitu.io/entry/56e638591ea49300550885cc</a>
+</li>
+</ol>
+
+<h2 id="git配置">
+<a id="git配置" class="anchor" href="#git%E9%85%8D%E7%BD%AE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>git配置</h2>
+
+<ol>
+<li>配置个人用户名和电子邮件
+
+<ul>
+<li><code>git config --global user.name pengzhen</code></li>
+<li><code>git config --global user.email pengzhen@example.com</code></li>
+</ul>
+</li>
+<li>配置文本编辑器
+
+<ul>
+<li>git在需要你输入一些信息的时候,会调用一个文本编译器</li>
+<li>如果不设置的话,可能默认调用nano编辑器,一般使用vi或者vim会比较方便</li>
+<li>配置编辑器为vi: <code>git config --global core.editor vi</code>
+</li>
+</ul>
+</li>
+<li>配置好之后查看配置信息: <code>git config -l</code>
+</li>
+<li>如果忘记配置的话,git不会让你提交任何东西</li>
+</ol>
+
+<h2 id="创建本地仓库">
+<a id="创建本地仓库" class="anchor" href="#%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>创建本地仓库</h2>
+
+<p>有两种创建本地仓库的方法  </p>
+
+<ol>
+<li>在现存目录下,通过导入所有文件来创建新的git仓库<br>
+
+<ul>
+<li>去往所要进行git管理的项目目录</li>
+<li>执行<code>git init</code>,执行结束之后会在当前目录下生成一个.git隐藏目录,所有git需要的数据和资源都存放在该目录下<br>
+</li>
+</ul>
+</li>
+<li>从已有git仓库克隆一个新的镜像仓库<br>
+
+<ul>
+<li>如果你有一个远程代码库</li>
+<li>执行<code>git clone git://github.com/Chorior/git.git mygit</code>会在当前目录下创建一个名为mygit的目录,其内含一个.git的目录,并包含了所有远程仓库的数据</li>
+<li>你也可以使用ssh或者http(s)代替git</li>
+</ul>
+</li>
+</ol>
+
+<h2 id="加载文件">
+<a id="加载文件" class="anchor" href="#%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>加载文件</h2>
+
+<ol>
+<li>首先检查当前文件的状态: <code>git status</code>
+</li>
+<li>查看未跟踪文件列表与已跟踪列表</li>
+<li>移除已跟踪文件并删除工作目录下该文件: <code>git rm file_tracked</code>
+</li>
+<li>移除已跟踪文件但不删除工作目录下该文件: <code>git rm --cached file_tracked</code>
+</li>
+<li>取消暂存已跟踪的文件: <code>git reset HEAD file_tracked</code>
+</li>
+<li>跟踪文件: <code>git add file_untracked</code>
+</li>
+<li>如果跟踪文件之后修改了该文件,使用<code>git diff</code>查看当前目录下文件与已跟踪文件的差异</li>
+<li>如果想取消对某个文件的修改,回到上次提交的文件状态: <code>git checkout -- file_modified</code>
+</li>
+<li>如果项目里一些文件经常变动,比如编译之后生成的.o,.a文件,或者记录项目结果的xml文件,这些都不需要跟踪，这时可以在项目根目录下新建一个.gitignore文件,里面写好不需要跟踪的文件的格式,配置语法如下:
+
+<ul>
+<li>以井号“#”开头代表注释</li>
+<li>以斜杠“/”结尾表示目录</li>
+<li>以星号“*”通配多个字符</li>
+<li>以问号“?”通配单个字符</li>
+<li>以方括号“[]”包含单个字符的匹配列表</li>
+<li>以叹号“!”表示不忽略(跟踪)匹配到的文件或目录</li>
+</ul>
+</li>
+</ol>
+
+<h2 id="移动文件">
+<a id="移动文件" class="anchor" href="#%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>移动文件</h2>
+
+<ol>
+<li>git不记录文件的移动，但它会推知文件的更名操作</li>
+<li>使用<code>git mv file_from file_to</code>
+</li>
+</ol>
+
+<h2 id="提交文件">
+<a id="提交文件" class="anchor" href="#%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>提交文件</h2>
+
+<ol>
+<li>提交已跟踪文件: <code>git commit</code>,运行之后会弹出设置好的编辑器以便输入此次提交的说明,为空是不能提交的</li>
+<li>查看提交历史: <code>git log</code>,显示内容为:
+
+<ul>
+<li>每次提交第一行为对应提交的SHA-1校验和</li>
+<li>每次提交第二行为作者姓名和邮件地址</li>
+<li>每次提交第三行为提交时间</li>
+<li>每次提交第四行缩进一个段落显示提交说明</li>
+</ul>
+</li>
+<li>如果提交结束之后发现自己手残有几个文件忘记加了,或者有文件修改忘记更新了,又或者提交信息写错了，首先加载忘记提交的文件或者修改过但没提交的文件，运行 <code>git commit --amend</code>会撤销上次的提交并重新开始新的提交</li>
+</ol>
+
+<h2 id="建立分支">
+<a id="建立分支" class="anchor" href="#%E5%BB%BA%E7%AB%8B%E5%88%86%E6%94%AF" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>建立分支</h2>
+
+<ol>
+<li>如果你想建立一个项目的镜像,使用分支操作,只需要一秒时间，不管项目有多大，都能成功镜像出来</li>
+<li>建立当前项目的一个分支: <code>git branch new_branch</code>
+</li>
+<li>查看分支列表: <code>git branch</code>
+</li>
+<li>切换到一个分支: <code>git checkout new_branch</code>
+</li>
+<li>新建并切换到该分支: <code>git checkout -b new_branch</code>
+</li>
+<li>执行<code>git log</code>查看提交历史后想回到某一个历史状态: <code>git checkout commit_SHA-1</code>
+</li>
+<li>新建一个历史分支: <code>git checkout -b new_branch commit_SHA-1</code>
+</li>
+</ol>
+
+<h2 id="合并分支">
+<a id="合并分支" class="anchor" href="#%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>合并分支</h2>
+
+<ol>
+<li>如果你想合并某一个分支到另外一个分支</li>
+<li>在源分支上加载已更新文件并提交；</li>
+<li>切换到目标分支</li>
+<li>执行<code>git merge src_branch</code>将源分支合并到目标分支</li>
+</ol>
+
+<h2 id="衍合分支">
+<a id="衍合分支" class="anchor" href="#%E8%A1%8D%E5%90%88%E5%88%86%E6%94%AF" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>衍合分支</h2>
+
+<ol>
+<li>衍合即将一个分支的更新操作在另一个分支中重做一遍</li>
+<li>切换到要衍合的分支</li>
+<li>执行<code>git rebase [des_branch]</code>
+</li>
+</ol>
+
+<h2 id="删除分支">
+<a id="删除分支" class="anchor" href="#%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>删除分支</h2>
+
+<ol>
+<li>切换到主分支: <code>git checkout master</code>
+</li>
+<li>删除不要的分支: <code>git branch -d other_branch</code>
+</li>
+<li>强制删除不要的分支: <code>git branch -D other_branch</code>
+</li>
+</ol>
+
+<h2 id="添加远程仓库">
+<a id="添加远程仓库" class="anchor" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>添加远程仓库</h2>
+
+<ol>
+<li>使用<code>git remote add [shortname] [url]</code>,如<code>git remote add origin git@github.com:Chorior/git.git</code>
+</li>
+<li>抓取远程仓库有的但本地主干分支没有的数据: <code>git fetch [shortname]</code>
+</li>
+<li>抓取远程仓库数据并自动合并到某一分支: <code>git pull [shortname] [branch_name]</code>
+</li>
+<li>修改远程仓库的简短名称: <code>git remote rename [short_name] [new_short_name]</code>
+</li>
+</ol>
+
+<h2 id="推送数据到远程仓库">
+<a id="推送数据到远程仓库" class="anchor" href="#%E6%8E%A8%E9%80%81%E6%95%B0%E6%8D%AE%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>推送数据到远程仓库</h2>
+
+<p><code>git push [remote_name] [branch_name]</code></p>
+
+<h2 id="删除远程仓库">
+<a id="删除远程仓库" class="anchor" href="#%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>删除远程仓库</h2>
+
+<p><code>git remote rm [short_name]</code></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Chorior">Chorior</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
