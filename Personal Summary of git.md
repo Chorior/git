@@ -1,7 +1,7 @@
 #git学习总结
 ---
 >作者：彭侦  
->链接：暂未上传  
+>链接：<https://github.com/Chorior/git/blob/master/Personal%20Summary%20of%20git.md> 
 
 Distributed Version Control System,简称DVCS,中文翻译为分布式版本管理系统,在管理代码方面简直就是神一般的存在,下面是我个人在两周之内学习git pro的总结,其中有一些参考了其它文章。
 
